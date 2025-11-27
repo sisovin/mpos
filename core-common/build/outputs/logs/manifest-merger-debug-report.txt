@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml:2:13-83
+INJECTED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml:2:13-83
+	package
+		INJECTED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml
+	xmlns:android
+		ADDED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml:2:23-81
+uses-sdk
+INJECTED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml reason: use-sdk injection requested
+INJECTED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml
+INJECTED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml
+	android:targetSdkVersion
+		INJECTED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml
+	android:minSdkVersion
+		INJECTED from D:\laragon\www\mobiles\MPos\core-common\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest237161163078673677.xml

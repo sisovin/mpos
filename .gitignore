@@ -14,3 +14,5 @@
 .cxx
 local.properties
 Get_Started.md
+error.log
+logcat.log

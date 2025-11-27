@@ -35,18 +35,95 @@ This is a scaffold. Some parts of the implementation are intentionally minimal a
 
 During the build process, I ran Gradle builds and addressed notable issues. The current build contains warnings and a few remaining configuration issues you should note:
 
-- Kotlin and Compose compiler versions: The project initially used Kotlin 2.0 which requires the Compose Compiler Gradle plugin. I changed Kotlin to 1.9.21 for compatibility with Compose 1.6.0, but work remains to ensure Compose Compiler layout/version compatibility. If you want to use Kotlin 2.0, apply the Compose Compiler Gradle plugin as documented by Android Studio and Jetpack Compose docs.
+- Kotlin and Compose compiler versions: The project uses Kotlin 1.9.10 aligned with Compose 1.5.3. Avoid mixing Kotlin 2.0 and older Compose compiler versions unless you intentionally apply the Compose Compiler Gradle plugin as documented by Jetpack Compose.
 
-- Min SDK vs dependencies: Some libraries (e.g., navigation-event, some newer Compose-related libraries) require minSdk 23+. I changed the app and modules to use minSdk 23.
-
-- Resource compatibility: Adaptive icons require Android API >= 26 for proper resource linking. The current app uses an adaptive icon resource and requires minimum sdk to be at least 26 for adaptive icons; the app minSdk can remain at 23 but resource processing may need a fallback modification or a fixed adaptive icon configuration.
+- Min SDK vs dependencies: Some libraries (e.g., navigation-event, some newer Compose-related libraries) require minSdk >= 23. This repository uses minSdk 26 across modules now to support adaptive icons and avoid resource linking failures.
 
 - Compose compiler artifact mismatch: Some modules attempted to use Compose 1.6.0 and the compiler version was not found; choose stable pairing of Compose, compiler and Kotlin to avoid failures. See Jetpack Compose compatibility table for correct versions.
 
+-
+Environment notes and build tips:
+- Use Java JDK 17 (OpenJDK 17 or Oracle JDK 17) for building the project. If you have a newer JDK (20/21) installed, either install JDK 17 and set `JAVA_HOME` to it, or set `org.gradle.java.home` in `gradle.properties` pointing to a JDK 17 installation.
+- If you see KAPT IllegalAccessErrors related to com.sun.tools.javac (module export issues), make sure to build with JDK 17 or apply JVM export flags in `gradle.properties` (see below), and run `./gradlew --stop` then `./gradlew clean --no-build-cache build`.
+- Example: Add this to `gradle.properties` when you must use a newer JDK (not recommended):
+  org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8 --add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED
+
 - Hilt & KAPT: The Hilt DI uses the Gradle plugin and annotation processors; ensure `pluginManagement` has mavenCentral and google() and `kapt` plugin is applied on modules with `@Inject` and `@HiltViewModel`.
+Use the included helper script to validate your local Java/Gradle environment and get recommendations:
+
+```powershell
+.\scripts\check-environment.ps1
+```
+
+Follow the script instructions to set `JAVA_HOME` or `org.gradle.java.home`.
+
+If you'd like the script to automatically set `org.gradle.java.home` to an existing JDK 17 install, use:
+
+```powershell
+.\scripts\set-java-home.ps1
+```
+
+Or set a specific JDK path manually:
+
+```powershell
+.\scripts\set-java-home.ps1 -Path 'C:\Program Files\Java\jdk-17.0.8'
+```
+=======
+- Kotlin and Compose compiler versions: The project uses Kotlin 1.9.10 aligned with Compose 1.5.3. Avoid mixing Kotlin 2.0 and older Compose compiler versions unless you intentionally apply the Compose Compiler Gradle plugin as documented by Jetpack Compose.
+
+- Min SDK vs dependencies: Some libraries (e.g., navigation-event, some newer Compose-related libraries) require minSdk >= 23. This repository uses minSdk 26 across modules now to support adaptive icons and avoid resource linking failures.
+
+- Compose compiler artifact mismatch: Some modules attempted to use Compose 1.6.0 and the compiler version was not found; choose stable pairing of Compose, compiler and Kotlin to avoid failures. See Jetpack Compose compatibility table for correct versions.
+
+Environment notes and build tips:
+- Use Java JDK 17 (OpenJDK 17 or Oracle JDK 17) for building the project. If you have a newer JDK (20/21) installed, either install JDK 17 and set `JAVA_HOME` to it, or set `org.gradle.java.home` in `gradle.properties` pointing to a JDK 17 installation.
+- If you see KAPT IllegalAccessErrors related to com.sun.tools.javac (module export issues), make sure to build with JDK 17 or apply JVM export flags in `gradle.properties` (see below), and run `./gradlew --stop` then `./gradlew clean --no-build-cache build`.
+- Example: Add this to `gradle.properties` when you must use a newer JDK (not recommended):
+  org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8 --add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED
+
+- Hilt & KAPT: The Hilt DI uses the Gradle plugin and annotation processors; ensure `pluginManagement` has mavenCentral and google() and `kapt` plugin is applied on modules with `@Inject` and `@HiltViewModel`.
+Use the included helper script to validate your local Java/Gradle environment and get recommendations:
+
+```powershell
+.\scripts\check-environment.ps1
+```
+
+Follow the script instructions to set `JAVA_HOME` or `org.gradle.java.home`.
+
+If you'd like the script to automatically set `org.gradle.java.home` to an existing JDK 17 install, use:
+
+```powershell
+.\scripts\set-java-home.ps1
+```
+
+Or set a specific JDK path manually:
+
+```powershell
+.\scripts\set-java-home.ps1 -Path 'C:\Program Files\Java\jdk-17.0.8'
+```
+
+Launcher & Logo
+- The app now displays the provided `assets/launcher.png` as the in-app splash screen background and `assets/ic_mpos_logo.png` as the in-app MPos app logo. This is implemented in Compose under `app/src/main/java/com/peanech/mpos/ui/splash/SplashScreen.kt` and `app/src/main/java/com/peanech/mpos/ui/logo/AppLogo.kt`.
+- Note: To change the system launcher icon (the icon shown on the Android home screen), you must copy the logo images into `res/mipmap-<density>/` (mdpi/hdpi/xhdpi/xxhdpi) and set `android:icon` and `android:roundIcon` in `AndroidManifest.xml` to `@mipmap/ic_launcher`. This is a resource-level change which requires binary image files in `res/mipmap-` and can't be done using only files in `assets`.
+
+Manual steps to set icon (optional):
+1) Generate density variants of `ic_mpos_logo.png` (mdpi/hdpi/xhdpi/xxhdpi) — Android Studio's Image Asset tool can do this.
+2) Replace the existing `mipmap-*/ic_launcher.png` and `mipmap-*/ic_launcher_round.png` with the generated images.
+3) Verify `AndroidManifest.xml` `android:icon`/`android:roundIcon` point to `@mipmap/ic_launcher`.
 
 - Some transitive dependencies and circular module references were resolved by separating network/dto types and adjusting module dependencies.
 
+### 🛠 Build fixes I applied (summary)
+
+- Forced `com.squareup:javapoet:1.13.0` in the root `build.gradle.kts` and added it to the buildscript classpath to eliminate the Hilt plugin `NoSuchMethodError` caused by multiple JavaPoet versions on the build/tooling classpath.
+- Aligned Kotlin to 1.9.10 and Compose to 1.5.3 (Compose BOM) across modules.
+- Set minSdk to 26 across modules to avoid resource linking failures (adaptive icons requirement).
+- Added `--add-exports`/`--add-opens` flags in `gradle.properties` as a fallback when building with newer JDK versions (recommended to build with JDK 17 instead).
+- Added environment helper scripts: `scripts/check-environment.ps1` and `scripts/set-java-home.ps1` to help enforce JDK 17 in Windows environments.
+
+With these adjustments the local build completes successfully (tested with `./gradlew clean :app:assembleDebug`).
+
+>>>>>>> 12892f7 (feat(ui): Improve Products & Cart UI, add CartRepository & CartViewModel, add product cards and bottom cart bar; Hilt binding for cart; in-memory cart implementation; update themes and build configs)
 ## 📦 How to build & run (Windows / PowerShell)
 
 1. Ensure you have JDK 17 or greater (the project uses Java 11 compatibility flags; adjust Gradle toolchains if needed). 2) Install Android SDK + Android Studio.

@@ -21,3 +21,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "MPos"
 include(":app")
+// Core modules
+include(":core-common")
+include(":core-di")
+include(":core-network")
+include(":core-db")
+include(":core-data")
+// Feature modules
+include(":feature-products")
+include(":feature-cart")
