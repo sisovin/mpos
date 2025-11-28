@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 
+import javax.inject.Singleton
+
+@Singleton
 class InMemoryCartRepository @javax.inject.Inject constructor() : CartRepository {
     private val mutex = Mutex()
     private val _items = MutableStateFlow<List<CartItem>>(emptyList())

@@ -8,6 +8,6 @@ public abstract class AppDatabase extends androidx.room.RoomDatabase {
         super();
     }
     
-    @org.jetbrains.annotations.NotNull
+    @org.jetbrains.annotations.NotNull()
     public abstract co.peanech.mpos.core.db.dao.ProductDao productDao();
 }

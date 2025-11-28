@@ -1,16 +1,16 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml:2:13-83
-INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml:2:13-83
+ADDED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml:2:13-83
+INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml:2:13-83
 	package
-		INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml
+		INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml
 	xmlns:android
-		ADDED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml:2:23-81
+		ADDED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml:2:23-81
 uses-sdk
-INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml reason: use-sdk injection requested
-INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml
-INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml
+INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml reason: use-sdk injection requested
+INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml
+INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml
 	android:targetSdkVersion
-		INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml
+		INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml
 	android:minSdkVersion
-		INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest8561082183708425809.xml
+		INJECTED from D:\laragon\www\mobiles\MPos\core-network\build\intermediates\tmp\ProcessLibraryManifest\debug\tempAndroidManifest16443654096996208938.xml

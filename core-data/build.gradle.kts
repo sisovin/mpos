@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -27,4 +29,6 @@ dependencies {
     implementation(project(":core-common"))
     implementation(libs.kotlinx.coroutines)
     implementation("javax.inject:javax.inject:1")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }

@@ -551,7 +551,12 @@ Testing & QA
 
 Purpose: Display the product catalog in a fast, scannable format that lets cashiers quickly search, browse, and add items to the cart while on duty. This screen is the primary selling surface for the cashier and must prioritize speed, clarity, and minimal taps.
 
-Note: Use `app/src/main/assets/Products.png` to match the visual composition, spacing and list/card proportions when implementing this screen.
+Note: Use `app/src/main/assets/Products.png` to match the visual composition, spacing and list/card proportions when implementing this screen. Use "DATA_SOURCE"  from public API:
+
+#### Check API
+Invoke-RestMethod -Uri 'https://mpos-olive.vercel.app/api/products'
+#### Check SPA route
+Invoke-RestMethod -Uri 'https://mpos-olive.vercel.app/pos'
 
 Layout & Composition
 
@@ -1024,7 +1029,7 @@ adb install -r app/build/outputs/apk/release/app-release.apk
 
 ## 23. Roadmap & Next Steps
 
-- Add Stripe/Payments for production checkout with server-side verification.
+- Add ABA PayWay/Payments for production checkout with server-side verification.
 - Add order history persistence and admin telemetry.
 - Add automated Play Store releases with tracks and feature delivery.
 

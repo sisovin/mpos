@@ -19,7 +19,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeUi.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
     compileOptions {
@@ -39,6 +39,7 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.material3)
+    implementation("androidx.compose.material:material-icons-extended:1.5.3")
     implementation(libs.navigation.compose)
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48")

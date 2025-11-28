@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -21,8 +24,24 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            val keystorePropertiesFile = rootProject.file("keystore.properties")
+            if (keystorePropertiesFile.exists()) {
+                val properties = Properties()
+                properties.load(FileInputStream(keystorePropertiesFile))
+                
+                storeFile = file(properties.getProperty("storeFile"))
+                storePassword = properties.getProperty("storePassword")
+                keyAlias = properties.getProperty("keyAlias")
+                keyPassword = properties.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -41,8 +60,12 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeUi.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 dependencies {
@@ -57,8 +80,11 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.material3)
+    implementation("androidx.compose.material:material-icons-extended:1.5.3")
     implementation(libs.coil.compose)
+    implementation(libs.zxing.core)
     implementation(libs.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-compiler:2.48")
@@ -69,6 +95,8 @@ dependencies {
     implementation(project(":feature-products"))
     implementation(project(":feature-cart"))
     implementation(project(":core-di"))
+    implementation(project(":core-data"))
+    implementation(project(":core-common"))
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
